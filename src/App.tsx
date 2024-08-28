@@ -9,27 +9,10 @@ export const App = () => {
   const [idActive, setIdActive] = useState(0);
 
   return (
-    <div className='flex flex-col md:flex-row' data-testid='sidebar'>
+    <div>
 
-      <div className='hidden md:flex'>
-        <Sidebar
-          idActive={idActive}
-          setIdActive={setIdActive}
-        />
-      </div>
-
-      <div className='md:hidden'>
-        <Topbar
-          idActive={idActive}
-          setIdActive={setIdActive}
-        />
-      </div>
-
-      {
-        idActive === 0
-          ? <TaskScreen />
-          : <ListScreen />
-      }
+      <ListScreen />
+      
     </div>
   )
 }

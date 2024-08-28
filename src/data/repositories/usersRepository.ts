@@ -7,10 +7,23 @@ export default class UsersRepository {
      *
      * @returns {Promise<{newData: UserModel[]}>}
      */
-    static async getAllUsers(): Promise<{newData: UserModel[]}> {
+    static async createUser(name: string, lastName: string, email: string): Promise<{newData: UserModel[]}> {
         try {
 
-            const resp = await fetch(`${baseUrl.mockApi}/elements`)
+            const resp = await fetch(
+                `${baseUrl.mockApi}/create user`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name,
+                        lastName,
+                        email
+                    })
+                }
+            );
 
 			const body = await resp.json();
 

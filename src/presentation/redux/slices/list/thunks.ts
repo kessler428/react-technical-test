@@ -1,22 +1,19 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import { addListOfUsers, updateFailedState, updateLoadingState } from "./listSlice";
+import { updateFailedState, updateCreatedUserState } from "./listSlice";
 import GetAllUsers from "../../../../domain/useCases/getAllUsers";
 
 
-export const fetchUsers = () => async (dispatch: Dispatch) => {
-
-
-    dispatch(updateLoadingState(true));
+export const fetchUsers = (
+    name: string,
+    lastName: string,
+    email: string
+    ) => async (dispatch: Dispatch) => {
 
     try {
 
-        const { newData } = await new GetAllUsers().call()
+        await new GetAllUsers().createUser(name, lastName, email);
 
-        dispatch(updateLoadingState(false));
-
-        dispatch(addListOfUsers(newData));
-
-        dispatch(updateFailedState(false));
+        dispatch(updateCreatedUserState(true));
 
     } catch (error) {
         dispatch(updateFailedState(true));

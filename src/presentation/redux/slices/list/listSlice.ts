@@ -4,7 +4,7 @@ import { UserInterface } from "../../../../domain/interfaces/UserInterface";
 
 const initialState = {
     listSlice: [] as UserInterface[],
-    isLoading: false,
+    isCreatedUser: false,
     hasFailedToLoad: false,
 }
 
@@ -15,8 +15,8 @@ export const listSlice = createSlice({
         addListOfUsers: (state, action: PayloadAction<UserInterface[]>) => {
             state.listSlice = action.payload;
         },
-        updateLoadingState: (state, action: PayloadAction<boolean>) => {
-            state.isLoading = action.payload;
+        updateCreatedUserState: (state, action: PayloadAction<boolean>) => {
+            state.isCreatedUser = action.payload;
         },
         updateFailedState: (state, action: PayloadAction<boolean>) => {
             state.hasFailedToLoad = action.payload;
@@ -24,4 +24,4 @@ export const listSlice = createSlice({
     },
 });
 
-export const { addListOfUsers, updateLoadingState, updateFailedState } = listSlice.actions;
+export const { addListOfUsers, updateCreatedUserState, updateFailedState } = listSlice.actions;
